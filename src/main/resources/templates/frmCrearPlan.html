@@ -1,0 +1,171 @@
+	<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="layouts/layoutPrincipal :: head">
+	</head>
+	
+<link rel="stylesheet" href="../static/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="../static/css/contact-form.css"/>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"/>    
+
+<style>
+.has-error .help-block {
+  color: red;
+}  
+</style>
+
+
+	<body>
+	<header th:replace="layouts/layoutPrincipal :: header">
+	</header>
+	<br>
+	<div class="container">
+	
+		<div class="card bg-light">
+		<div class="card-header bg-dark text-white" th:text=${titulo}></div>
+		<div class="card-body">
+		<form th:action="@{/skyscrapers/savePlan}" th:object ="${bolsafirma}" data-toggle="validator"
+													class="popup-form" id="id_registra" method="post">
+													
+													
+													
+														<div class="row">
+														<input type="hidden" th:field="*{idbolsafirma}">
+														
+															<div class="form-group col-sm-6">
+																<div class="subTitulos">PLAN DE BOLSA DE FIRMAS(*)</div>
+																	<div class="ubicacion">
+																		<div class="input-group-icon">
+																			<i class="fa fa-id-card"></i>
+																		</div>
+																	</div>	
+																	<input type="text" th:field="*{planbolsa}" class="form-control" id="planbolsa" name="planbolsa" placeholder="Ingresar Plan de Bolsa" required>
+															</div>	
+															<div class="form-group col-sm-6">
+																<div class="subTitulos">PRECIO(*)</div>
+																<div class="ubicacion">
+																	<div class="input-group-icon">
+																		<i class="fa fa-user"></i>
+																	</div>
+																</div>	
+																		<input type="text" th:field="*{precio}" class="form-control" id="precio" name="precio" placeholder="Ingresar Precio" required>
+															</div>		
+															<div class="form-group col-sm-6">
+																<div class="subTitulos">CANTIDAD DE FIRMAS(*)</div>
+																<div class="ubicacion">
+																	<div class="input-group-icon">
+																		<i class="fa fa-user"></i>
+																	</div>
+																</div>	
+																		<input type="text" th:field="*{cantidadfirmas}" class="form-control" id="cantidadfirmas" name="cantidadfirmas" placeholder="Ingresar Cantidad de Firmas" required>
+															</div>	
+															<div class="my-2"></div>
+															<div class="form-group last col-sm-12">
+																	<div class="ubicacionPie">
+																		<button  type="submit" class="btn btn-success" th:text="Guardar"><i class='fa fa-save'></i> REGISTRAR</button>
+																	 </div>
+																</div><!-- end form-group -->	
+		
+															</div><!-- end row -->
+														</form><!-- end form -->
+	</div>
+	</div>
+	</div>
+	<br>
+	<footer th:replace="layouts/layoutPrincipal :: footer">
+	</footer>
+	
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+ 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script> 	
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script> 
+	
+	
+	<script type="text/javascript">
+	 $(document).ready(function() {
+		$('#plan').DataTable();
+	})
+ </script>	
+	
+		<script type="text/javascript">
+ 	
+ 	$('.alert').fadeIn();     
+	  	setTimeout(function() {
+	       $(".alert").fadeOut();           
+	  },2000);
+	
+	  		 
+	$(".table .btnEliminar").on("click",function(){
+ 		event.preventDefault();
+		var href=$(this).attr("href");
+		$("#btnEliminar").attr('href',href);
+		$("#modalEliminar").modal("show");
+ 	})
+	
+	
+	</script>
+	
+	<script type="text/javascript">    
+    $(document).ready(function(){     
+        $('#id_registra').bootstrapValidator({      
+        	 fields:{
+        		
+        		 planbolsa:{
+       		 		selector:'#planbolsa',    
+     			 	validators:{
+     			 		notEmpty:{
+     			 			message:'Campo plan de bolsa es obligatorio'	
+     			 		},
+     			 		regexp:{
+     			 			regexp:/^[a-zA-Z\s\ñ\Ñ\á\é]{3,30}$/,
+     			 			message:'Campo plan de bolsa solo letras min 3 hasta max 30 letras'
+     			 		},
+     			 	}
+     		 },   
+     		
+     		precio: {    
+                validators: {    
+                    notEmpty: {    
+                        message: 'Campo precio es obligatorio'    
+                    },
+                    regexp:{
+ 			 			regexp:/^[0-9]+((,|\.)[0-9]{0,2})?$/,
+ 			 			message:'Campo precio son hasta 2 decimales'
+ 			 		}       
+                }    
+            }, 
+ 
+  		 	  
+     		cantidadfirmas:{
+     			selector:'#cantidadfirmas',      
+    			 	validators:{
+    			 		notEmpty:{
+    			 			message:'Campo cantidad de firmas es obligatorio'	
+    			 		},
+    			 		digits:{
+    			 			message:'Campo cantidad de firmas es solo digitos'
+    			 		},
+    			 		regexp:{
+   			 			regexp:/^(\d){4,5}$/,
+   			 			message:'Campo cantidad firmas son 4 o 5 digitos'
+   			 		},
+    			 	}
+    		 	 },  
+  		 	 
+                 
+        	 }
+        });   
+			
+    });    
+</script>   
+	
+	
+	
+</body>
+</html>

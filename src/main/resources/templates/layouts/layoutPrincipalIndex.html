@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:fragment="head">
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+	<header class="header" th:fragment="header">
+		<nav class="navbar navbar-expand-lg header-nav fixed-top bg-dark">
+		  <div class="container-fluid">
+		    <a class="navbar-brand pb-4" href="#">Skyscrapers</a>
+		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class=""></span>
+		      <span class=""></span>
+		      <span class=""></span>
+		    </button>
+		    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+		      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+		        <li class="nav-item">
+		          <a class="nav-link active" aria-current="page" th:href="@{/skyscrapers/home}">Inicio</a>
+		        </li>
+		        <li class="nav-item dropdown" sec:authorize="hasAnyAuthority('CLI_GESTOR','ADMIN')">
+		          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		            Mantenimiento
+		          </a>
+		          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+		            <li sec:authorize="hasAuthority('ADMIN')"><a class="dropdown-item" th:href="@{/skyscrapers/listar}" >Empresa</a></li>
+		            <li sec:authorize="hasAuthority('ADMIN')"><a class="dropdown-item" th:href="@{/auth/registro}" >Registrar Usuario</a></li>
+		            <li sec:authorize="hasAuthority('ADMIN')"><a class="dropdown-item" th:href="@{/skyscrapers/listarPlanes}">Bolsa de Firmas</a></li>
+		            <li sec:authorize="hasAuthority('CLI_GESTOR')"><a class="dropdown-item" th:href="@{/skyscrapers/listarTrabajadores}">Trabajador</a></li>
+		          </ul>
+		        </li>
+		        <li class="nav-item dropdown" sec:authorize="hasAnyAuthority('CLI_FIRMANTE','CLI_GESTOR')">
+		          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		            Consultar
+		          </a>
+		          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+		            <li><a class="dropdown-item" th:href="@{/skyscrapers/consultarDocumentos}">Documentos Firmados</a></li>
+		          </ul>
+		        </li>
+		        <li class="nav-item" sec:authorize="hasAuthority('CLI_GESTOR')">
+		          <a class="nav-link active" aria-current="page" th:href="@{/skyscrapers/subirDocumento}">Subir Documento</a>
+		        </li>
+		        <li class="nav-item" sec:authorize="hasAuthority('CLI_FIRMANTE')">
+		          <a class="nav-link active" aria-current="page" href="#">Registrar Certificado</a>
+		        </li>
+		        <li class="nav-item" sec:authorize="hasAuthority('CLI_FIRMANTE')">
+		          <a class="nav-link active" aria-current="page" th:href="@{/skyscrapers/documentos/listarDocumentos}">Firmar</a>
+		        </li>
+		      </ul>
+		      <div class="d-flex">
+		      	<a class="nav-link disabled fs-5" href="#" tabindex="-1" aria-disabled="true" sec:authorize="isAuthenticated()">Bienvenid@: <span sec:authentication="name">Username</span></a>
+              	<a class="nav-link disabled fs-5" href="#" tabindex="-1" aria-disabled="true">Saldo: xxxx firmas</a>
+              	<div sec:authorize="hasAuthority('CLI_FIRMANTE')"><a class="btn btn-outline-success fs-5 mx-2" aria-current="page" th:href="@{/skyscrapers/documentos/export/excel}">Reporte</a></div>
+		        <form th:action="@{/logout}" method="post">
+		        	<input class="btn btn-outline-danger fs-5" type="submit" value="Salir"/>
+		        </form>
+		      </div>
+		    </div>
+		  </div>
+		</nav>
+	</header>
+
+	<footer class="footer mt-auto py-3 bg-dark" th:fragment="footer">
+  		<div class="container text-center">
+    		<span class="text-white">Skyscrapers™ - ©2020 All Rights Reserved </span>
+    	</div>
+    	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>	
+	</footer>
+	
+</body>
+</html>

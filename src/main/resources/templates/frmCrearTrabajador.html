@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="layouts/layoutPrincipal :: head">
+	</head>
+	
+<link rel="stylesheet" href="../static/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="../static/css/contact-form.css"/>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"/>    
+
+<style>
+.has-error .help-block {
+  color: red;
+}  
+</style>
+
+
+	<body>
+	<header th:replace="layouts/layoutPrincipal :: header">
+	</header>
+	<br>
+	<div class="container">
+	
+		<div class="card bg-light">
+		<div class="card-header bg-dark text-white" th:text=${titulo}></div>
+		<div class="card-body">
+		<form th:action="@{/skyscrapers/saveTrabajador}" th:object ="${trabajador}" data-toggle="validator"
+													class="popup-form" id="id_registra" method="post">
+													
+													
+													
+														<div class="row">
+														<input type="hidden" th:field="*{id}">
+														
+															<div class="form-group col-sm-6">
+																<div class="subTitulos">DNI(*)</div>
+																	<div class="ubicacion">
+																		<div class="input-group-icon">
+																			<i class="fa fa-id-card"></i>
+																		</div>
+																	</div>	
+																	<input type="text" th:field="*{dni}" class="form-control" id="dni" name="dni" placeholder="Ingresar DNI" required>
+															</div>	
+														
+															<div class="form-group col-sm-6">
+																<div class="subTitulos">NOMBRE(*)</div>
+																	<div class="ubicacion">
+																		<div class="input-group-icon">
+																			<i class="fa fa-id-card"></i>
+																		</div>
+																	</div>	
+																	<input type="text" th:field="*{nombre}" class="form-control" id="nombre" name="nombre" placeholder="Ingresar Nombre" required>
+															</div>	
+															
+															<div class="form-group col-sm-6">
+																<div class="subTitulos">APELLIDO(*)</div>
+																	<div class="ubicacion">
+																		<div class="input-group-icon">
+																			<i class="fa fa-id-card"></i>
+																		</div>
+																	</div>	
+																	<input type="text" th:field="*{apellido}" class="form-control" id="apellido" name="apellido" placeholder="Ingresar Apellido" required>
+															</div>	
+															
+															<div class="form-group col-sm-6">
+																<div class="subTitulos">CORREO/USERNAME(*)</div>
+																<div class="ubicacion">
+																	<div class="input-group-icon">
+																		<i class="fa fa-user"></i>
+																	</div>
+																</div>	
+																		<input type="text" th:field="*{username}" class="form-control" id="username" name="username" placeholder="Ingresar Correo/Username" required>
+															</div>		
+															
+															<div class="form-group col-sm-6">
+																<div class="subTitulos">PASSWORD(*)</div>
+																<div class="ubicacion">
+																	<div class="input-group-icon">
+																		<i class="fa fa-user"></i>
+																	</div>
+																</div>	
+																		<input type="password" th:field="*{password}" class="form-control" id="password" name="password" placeholder="Ingresar Password" required>
+															</div>	
+															
+															<div class="form-group col-sm-6">
+																<div class="subTitulos">ROL(*)</div>
+																<div class="ubicacion">
+																	<div class="input-group-icon">
+																		<i class="fa fa-user"></i>
+																	</div>
+																</div>	
+																		<select th:field="*{roles}" class="form-select" id="validationCustom05" required>
+																	      	<option value="" th:text="'Seleccione un Rol'"/>
+																	      	<option value="2" th:text="CLI_FIRMANTE"/>																	      	
+																 			<option value="3" th:text="CLI_GESTOR"/>
+																	    </select>
+															</div>	
+															
+															<input class="visually-hidden" th:field="*{enabled}"/>
+															<div class="my-2"></div>							
+															<div class="form-group last col-sm-12">
+																	<div class="ubicacionPie">
+																		<button  type="submit" class="btn btn-success" th:text="Guardar"><i class='fa fa-save'></i> REGISTRAR</button>
+																	 </div>
+																</div><!-- end form-group -->	
+		
+															</div><!-- end row -->
+														</form><!-- end form -->
+	</div>
+	</div>
+	</div>
+	<br>
+	<footer th:replace="layouts/layoutPrincipal :: footer">
+	</footer>
+	
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+ 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script> 	
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script> 
+	
+	
+	<script type="text/javascript">
+	 $(document).ready(function() {
+		$('#trabajador').DataTable();
+	})
+ </script>	
+	
+		<script type="text/javascript">
+ 	
+ 	$('.alert').fadeIn();     
+	  	setTimeout(function() {
+	       $(".alert").fadeOut();           
+	  },2000);
+	
+	  		 
+	$(".table .btnEliminar").on("click",function(){
+ 		event.preventDefault();
+		var href=$(this).attr("href");
+		$("#btnEliminar").attr('href',href);
+		$("#modalEliminar").modal("show");
+ 	})
+	
+	
+	</script>
+	
+	<script type="text/javascript">    
+    $(document).ready(function(){     
+        $('#id_registra').bootstrapValidator({      
+        	 fields:{
+        		
+        		 dni:{
+        			 	validators:{
+        			 		notEmpty:{
+        			 			message:'Campo dni es obligatorio'	
+        			 		},
+        			 		digits:{
+        			 			message:'Campo dni es solo d&iacutegitos'
+        			 		},
+        			 		regexp:{
+       			 			regexp:/^(\d){8}$/,
+       			 			message:'Campo cantidad son 8 d&iacutegitos'
+       			 		}
+        			 	}
+        		 	 },  
+         		 nombre:{
+      			 	validators:{
+      			 		notEmpty:{
+      			 			message:'Campo nombre es obligatorio'	
+      			 		},
+      			 		regexp:{
+      			 			regexp:/^[a-zA-Z\s\ñ\Ñ\á\é]{3,45}$/,
+      			 			message:'Campo nombre solo letras min 3 hasta max 45 letras'
+      			 		}
+      			 	}
+      		 },   
+      		 apellido:{
+   			 	validators:{
+   			 		notEmpty:{
+   			 			message:'Campo apellido es obligatorio'	
+   			 		},
+   			 		regexp:{
+   			 			regexp:/^[a-zA-Z\s\ñ\Ñ\á\é]{3,45}$/,
+   			 			message:'Campo apellido solo letras min 3 hasta max 45 letras'
+   			 		}
+   			 	}
+   		 },   
+   		username:{
+ 			 	validators:{
+ 			 		notEmpty:{
+ 			 			message:'Campo correo es obligatorio'	
+ 			 		},
+ 			 		emailAddress:{
+ 			 			message:'Campo correo debe ser como el siguiente formato "example@gmail.com" '
+ 			 		}
+ 			 	}
+ 		 },   
+ 		 password:{
+ 			 	validators:{
+ 			 		notEmpty:{
+ 			 			message:'Campo password es obligatorio'	
+ 			 		},
+ 			 		regexp:{
+ 			 			regexp:/^[a-zA-Z\s\ñ\Ñ\á\é\d]{3,45}$/,
+ 			 			message:'Campo password solo letras min 3 hasta max 45 caracteres'
+ 			 		}
+ 			 	}
+ 		 },   
+      		  		 
+   		 	celular:{
+   			 	validators:{
+   			 		notEmpty:{
+   			 			message:'Campo celular es obligatorio'	
+   			 		},
+   			 		digits:{
+   			 			message:'Campo celular es solo d&iacutegitos'
+   			 		},
+   			 		regexp:{
+  			 			regexp:/^(\d){9}$/,
+  			 			message:'Campo celular son 9 d&iacutegitos'
+  			 		}
+   			 	}
+   		 	 },  
+  		 	 
+   		 	 
+   		 	roles:{
+ 			 	validators:{
+ 			 		notEmpty:{
+ 			 			message:'Campo rol es obligatorio'	
+ 			 		},
+ 			 	}
+ 			 }, 
+   		 	 
+   		 	 
+                 
+        	 }
+        });   
+			
+    });    
+</script>   
+	
+	
+	
+</body>
+</html>

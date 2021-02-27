@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="layouts/layoutPrincipal :: head">
+		<title>Index</title>
+	</head>
+<body>
+	<header th:replace="layouts/layoutPrincipal :: header">	</header>
+	
+	
+	<div class="container -lg mt-5 " >
+		<div class="row justify-content-center " >
+		
+			<div class="col-5 shadow p-3 mb-5 bg-body rounded " >
+			
+			
+				<div class="p-3 mb-3 border-bottom">
+					<h2 class="text-center">Firmar Documento</h2>
+				</div>
+				<form th:action="@{/skyscrapers/documentos/firmar}" id="firmarDocumento" th:object="${documento}" method="post">
+					<input type="text" class="visually-hidden" th:field="*{iddocumento}" name="iddocumento">
+					<input type="text" class="visually-hidden" th:field="*{fecha_registro}" name="fecha_registro">
+					<input type="text" class="visually-hidden" th:field="*{link_original}" name="link_original">
+					<input type="text" class="visually-hidden" th:field="*{nombre_original}" name="nombre_original">
+					<input type="text" class="visually-hidden" th:field="*{users}" name="users">
+				</form>
+				<div class="row mb-3">
+					<div class="col-12">
+						<label for="exampleFormControlInput1" class="form-label">Buscar certificado:</label>
+					</div>
+					 <div class="col-10">
+					 	<input type="file" class="form-control" id="fileInput" >
+					 </div>
+				</div>
+				<div class="row mb-3">
+					<div class="col-2">
+						<label for="exampleFormControlInput1" class="form-label">Contraseña:</label>
+					</div>
+					 <div class="col-6">
+					 	<input type="text" class="form-control">
+					 </div>
+				</div>
+				<div class="col-12 border-top mb-3"></div>
+				<div class="col-3">
+					<div class="d-grid gap-1">
+			      			<button type="submit" disabled="disabled" form="firmarDocumento" class="btn btn-primary">Firmar</button>
+	  				</div>
+				</div>	
+			
+							
+			</div>
+		</div>
+
+	</div>
+	
+	
+	<footer th:replace="layouts/layoutPrincipal :: footer"></footer>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">	</script>
+	
+	<script type="text/javascript">
+	$("#fileInput").change(function(){
+	    $("button").prop("disabled", this.files.length == 0);
+	});
+	</script>
+	
+	
+	
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="layouts/layoutPrincipal :: head">
+		<title>Index</title>
+	</head>
+<body>
+	<header th:replace="layouts/layoutPrincipal :: header">
+	</header>
+	<div class="container-lg mt-5">
+		<div class="row justify-content-center">
+			<div class="col-8 shadow p-3 mb-5 bg-body rounded">
+				<div class="p-3 mb-3 border-bottom">
+					<h2 class="text-center">Registro de Usuario</h2>
+				</div>
+				<form th:action="@{/auth/registro}" th:object="${usuario}" method="post" class="row g-3 needs-validation" novalidate>
+			    	  <div class="col-md-4">
+					    <label for="validationCustom01" class="form-label">Nombre</label>
+					    <input type="text" th:field="*{nombre}" class="form-control" id="validationCustom01" value="Mark" required pattern="[A-Za-z ]{5,50}" title="Solo Letras  Tama&ntilde;o m&iacute;nimo: 5. Tama&ntilde;o m&aacute;ximo: 50">
+					    <div class="valid-feedback">
+					      Correcto!
+					    </div>
+					    <div class="invalid-feedback">
+					        Por favor rellene un nombre.
+					      </div>
+					  </div>
+					  <div class="col-md-4">
+					    <label for="validationCustom02" class="form-label">Apellido</label>
+					    <input type="text" th:field="*{apellido}" class="form-control" id="validationCustom02" value="Mark" required pattern="[A-Za-z ]{5,50}" title="Solo Letras  Tama&ntilde;o m&iacute;nimo: 5. Tama&ntilde;o m&aacute;ximo: 50">
+					    <div class="valid-feedback">
+					      Correcto!
+					    </div>
+					    <div class="invalid-feedback">
+					        Por favor rellene un apellido.
+					     </div>
+					  </div>
+					  <div class="col-md-4">
+					    <label for="validationCustom03" class="form-label">Dni</label>
+					    <input type="text" th:field="*{dni}" class="form-control" id="validationCustom03" value="Mark"  maxlength="8" required  pattern="[0-9]{8}" title="Solo 8 D&iacute;gitos">
+					    <div class="valid-feedback">
+					      Correcto!
+					    </div>
+					    <div class="invalid-feedback">
+					        Por favor rellene un dni.
+					      </div>
+					  </div>
+					  <div class="col-md-4">
+					    <label for="validationCustomUsername" class="form-label">Username / Correo</label>
+					    <div class="input-group has-validation">
+					      <span class="input-group-text" id="inputGroupPrepend">@</span>
+					      <input type="email" th:field="*{username}"  class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required title="Formato corre 'example@gmail.com'">
+					      <div class="invalid-feedback">
+					        Please rellene un usuario.
+					      </div>
+					      <div class="valid-feedback">
+					      	Correcto!
+					     </div>
+					    </div>
+					  </div>
+					  <div class="col-md-4">
+					    <label for="validationCustom04" class="form-label">Contraseña</label>
+					    <input type="password" th:field="*{password}" class="form-control" id="validationCustom04" value="Mark"  required pattern="[A-Za-z0-9]{5,40}" title="Letras y n&uacute;meros. Tama&ntilde;o m&iacute;nimo: 5. Tama&ntilde;o m&aacute;ximo: 40">
+					    <div class="valid-feedback">
+					      Correcto!
+					    </div>
+					    <div class="invalid-feedback">
+					        Por favor rellene una contraseña
+					      </div>
+					  </div>
+					  <div class="col-md-4">
+					    <label for="validationCustom05" class="form-label">Rol</label>
+					    <select th:field="*{roles}" class="form-select" id="validationCustom05" required>
+					      	<option value="" th:text="'Seleccione un rol'"/>
+				 			<option th:each="data : ${listadoRol}"
+				 			th:value="${data.id}"
+				 			th:text="${data.name}"
+				 		/>
+					    </select>
+					    <div class="valid-feedback">
+					      Correcto!
+					    </div>
+					    <div class="invalid-feedback">
+					      Por favor seleleccione un rol.
+					    </div>
+					  </div>
+					  <div class="col-md-4">
+					    <label for="validationCustom05" class="form-label">Empresa</label>
+					    <select th:field="*{empresa}" class="form-select" id="validationCustom05" required>
+					      	<option value="" th:text="'Seleccione una empresa'"/>
+				 			<option th:each="data : ${listadoEmpresa}"
+				 			th:value="${data.idempresa}"
+				 			th:text="${data.razon_social}"
+				 		/>
+					    </select>
+					    <div class="valid-feedback">
+					      Correcto!
+					    </div>
+					    <div class="invalid-feedback">
+					      Por favor seleleccione una empresa.
+					    </div>
+					  </div>
+					  <input class="visually-hidden" th:field="*{enabled}"/>
+					  <div class="col-12">
+					    <div class="form-check">
+					      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+					      <label class="form-check-label" for="invalidCheck">
+					        Acepta los términos y condiciones
+					      </label>
+					      <div class="invalid-feedback">
+					        Debe estar de acuerdo antes de enviar.
+					      </div>
+					    </div>
+					  </div>
+					  <div class="col-12">
+					    <button class="btn btn-primary" type="submit">Registrar</button>
+					  </div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layouts/layoutPrincipal :: footer"></footer>
+	<script src="/js/validation.js">
+	
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="layouts/layoutPrincipal :: head">
+		<title>Index</title>
+	</head>
+	
+	<link th:href="@{/css/styleInicio.css}" rel="stylesheet">
+<body>
+	<header th:replace="layouts/layoutPrincipal :: header">
+	</header>
+	
+	<h1>TU FIRMA , TU PLAN</h1>
+	<p class="parrintro">
+		Skyscrapers se adapta a las necesidades de cada negocio y para ello, ofrece soluciones de firma electr&oacutenica personalizadas. Y ahora, ante la situaci&oacuten excepcional que vivimos, te ofrecemos los mejores planes para tu negocio. 
+		Tan sencillo que no necesitar&aacutes nada m&aacutes.
+	</p>
+	<section class="post-list">
+	
+		<div class="content">
+		
+			
+				<article class="post"  th:each="bolsafirma : ${databolsas}">
+			
+				<div class="post-header">
+					<div class="post-img-3"> </div>
+				</div>
+				
+				<div class="post-body" >
+					<span> Skyscrapers </span>
+					<h2 th:text="${bolsafirma.planbolsa}"> </h2>
+					<p><strong>Cantidad de Firmas :</strong> <span th:text="${bolsafirma.cantidadfirmas}"></span></p>
+					<p><strong>Precio : $ </strong>  <span th:text="${bolsafirma.precio}"></span> </p>
+					<a th:href="@{/skyscrapers/pago}" class="post-link"> Comprar</a>
+				</div>
+				
+			</article> 	
+					
+		</div>
+	</section>
+	
+	
+	
+	<footer  th:replace="layouts/layoutPrincipalIndex :: footer">
+	</footer>
+</body>
+</html>

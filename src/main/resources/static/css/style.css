@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html,body{
+	font-size: 15px;
+	line-height: 1.5;
+	box-sizing: border-box;
+	margin: 0;
+	overflow-x: hidden;
+	top: 0;
+	left: 0;
+	
+	font-family: sans-serif;
+	
+	color: #404040;
+ 	background-image: url("https://image.freepik.com/vector-gratis/circuito-informatico-abstracto-vector-fondo-tecnologia-alta-tecnologia_127747-59.jpg");
+	background-attachment: fixed;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-color: #66999;
+	
+}
+
+
+.container .dentro{
+	background-color: white;
+	margin-top: 10px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	min-height: 100%;
+}
+
+.dentro{
+	background-color: white;
+	margin-top: 10px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	min-height: 100%;
+}
+
+
+
+
+body{
+	padding-top: 8rem;
+}
+
+header a{
+	text-decoration: none;
+	color: rgb( 236, 240, 241 );
+	font-weight: 500;
+}
+
+header a:hover{
+	color: rgb(243, 156, 18);
+}
+
+ul{
+	list-style-type:none;
+}
+
+header{
+	font-family: 'Poppins';
+}
+
+header .navbar{
+	padding: 3rem 2rem;
+	height: 0rem;
+	min-height: 12vh;
+}
+
+header .navbar .navbar-brand a{
+	display: block;
+	text-decoration: none;
+}
+
+header .navbar-brand{
+	font-family: 'Pacifico',cursive;
+	font-size: 2.5rem;
+	color: rgb(243, 156, 18);
+}
+
+header .navbar-toggler{
+	background: rgb(243, 156, 18);
+	border: none;
+	padding: 10px 6px;
+	outline: none;
+}
+
+header .navbar-toggler span{
+	display: block;
+	width: 22px;
+	height: 2px;
+	border: 1px;
+	background: #fff;
+}
+
+ header .navbar-toggler span + span{
+	margin-top: 4px;
+	width: 18px;
+	margin-left: 4px;
+}
+
+header .navbar-toggler span + span + span{
+	width: 10px;
+	margin-left: 10px;
+}
+
+header .navbar-expand-lg .navbar-nav .nav-link{
+	padding: 2rem 1.2rem;
+	font-size: 1.4rem; 
+	position: relative;
+}
+
+header .navbar-expand-lg .navbar-nav .nav-link:hover{
+	border-top: 4px solid rgb(243, 156, 18);
+}
+
+header .navbar-nav button{
+	padding: 1.2rem 0;
+}
+
+header .navbar-nav .btn{
+	background-color: #e74c3c;
+	color: white;
+	border-radius: 0; 
+	padding: 1rem 1.5rem;
+	font-size: 1.2rem;
+	margin-top: -10px;
+}
+
+header .navbar-nav .btn:hover{
+	background-color: #0a3d62;
+} 
+
+.navbar {
+	padding: 2rem 5rem 1.2rem 5rem;
+}
+
+section{
+	padding: 0rem 5rem;
+}
+
+.boton{
+	background: none;
+	border: none;
+	text-align: center;
+	margin-left: 4px;
+}
+
+.boton-firmar{
+	color: rgb(32, 124, 194);
+}
+
+.boton-email{
+	color: rgb(224, 41, 41);
+}
+
+.boton-reporte{
+	color: rgb(80, 158, 65);
+}
+
+
+.boton-firmar:hover{
+	color: rgb(105, 170, 202);
+}
+
+.boton-email:hover{
+	color: rgb(240, 96, 96);
+}
+
+.boton-reporte:hover{
+	color: rgb(111, 190, 96);
+}
+
+
+
+
+
+
+

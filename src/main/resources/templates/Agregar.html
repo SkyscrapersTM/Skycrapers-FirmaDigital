@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts/layoutPrincipal :: head">
+<title>Index</title>
+</head>
+<body>
+	<header th:replace="layouts/layoutPrincipal :: header"> </header>
+
+	<div class="container-lg dentro">
+		<div id="modalActualizar" class="contenedor" >
+
+
+			<form method="post" th:action="@{/upload}" th:object=${documento}
+				enctype="multipart/form-data" id="Agrega" role="document">
+				<div class="cara">
+					<div class="cara-header">
+						<h1>Registro Documento</h1>
+					</div>
+					<div class="cara-body">
+						<div class="from-group">
+							<label>ID</label> <input th:field="*{iddocumento}" type="text"
+								class="form-control" readonly="readonly" >
+						</div>
+						<div class="from-group">
+							<label>Documento</label> <br> <input
+								th:field="*{link_original}" type="file" class="form-control"
+								accept=".doc,.docx" name="documento" aria-describedby="fileHelp"
+								id="link_original" required>
+
+						</div>
+
+
+						<div class="from-group">
+						 <label>Firmante</label> 
+				      
+			          <select th:field="*{users}" class="form-select"  id="idfirmante" required >
+			          			  <option value="" selected="selected" 	th:text="'Seleccione firmante'"/>
+								  <option th:each="data : ${listadoRol}"
+		   							th:value="${data.id}"
+		   							th:utext="${data.nombre}">
+								
+						</select>
+						</div>
+						
+				
+							<label>Estado</label> <input th:field="*{estado}" type="text"
+								placeholder="Pendiente " class="form-control"
+								readonly="readonly" id="estado">
+						</div>
+
+					</div>
+					<div class="cara-footer">
+						<br> <br> <input type="submit" value="Guardar"
+							class="btn btn-outline-success"  >
+					</div>
+					</form>
+				</div>
+
+			
+
+		</div>
+
+		<footer th:replace="layouts/layoutPrincipal :: footer"> </footer>
+			<script type="text/javascript">
+ 	
+
+	
+	$(".table").on("click",function(){
+ 		event.preventDefault();
+ 		var href=$(this).attr("href");
+ 		$.get(href,function(response){
+ 			$("#idfirmante").val(response.idfirmante.id);	
+ 		
+ 		});
+ 		$("#modalActualizar").modal("show");
+ 				
+ 	})
+ 		
+ 		
+ 		
+	
+	</script>
+		<script type="text/javascript">
+		function comprueba_extension(formulario, documento) {
+			   extensiones_permitidas = new Array( ".doc", ".docx");
+			   mierror = "";
+			   if (!documento) {
+			      //Si no tengo documento, es que no se ha seleccionado un documento en el formulario
+			       mierror = "No has seleccionado ningún documento";
+			   }else{
+			      //recupero la extensión de este nombre de documento
+			      extension = (documento.substring(documento.lastIndexOf("."))).toLowerCase();
+			      //alert (extension);
+			      //compruebo si la extensión está entre las permitidas
+			      permitida = false;
+			      for (var i = 0; i < extensiones_permitidas.length; i++) {
+			         if (extensiones_permitidas[i] == extension) {
+			         permitida = true;
+			         break;
+			         }
+			      }
+			      if (!permitida) {
+			         mierror = "Comprueba la extensión de los documentos a subir. \nSólo se pueden subir documentos con extensiones: " + extensiones_permitidas.join();
+			       }else{
+			          //submito!
+			         alert ("Todo correcto. Voy a submitir el formulario.");
+			         formulario.submit();
+			         return 1;
+			       }
+			   }
+			   //si estoy aqui es que no se ha podido submitir
+			   alert (mierror);
+			   return 0;
+			}
+		
+		
+		</script>
+		<script type="text/javascript">
+			$(document)
+					.ready(
+							function() {
+								$('#Agrega')
+										.bootstrapValidator(
+												{
+													fields : {
+
+														Precio : {
+															selector : '#idPrecio',
+															validators : {
+																notEmpty : {
+																	message : 'Ingrese Precio'
+																},
+																regexp : {
+																	regexp : /^[0-9]{0,}.[0-9]{2}$/,
+																	message : 'Ingrese solo números enteros o real con 2 dígitos'
+																},
+															}
+														},
+														documento : {
+															selector : '#idDocumento',
+															validators : {
+																notEmpty : {
+																	message : 'Seleccione Documento'
+																},
+															}
+														}
+													}
+												});
+
+							});
+		</script>
+</body>
+<style>
+.contenedor {
+	margin: 40px;
+}
+</style>
+
+
+
+</html>

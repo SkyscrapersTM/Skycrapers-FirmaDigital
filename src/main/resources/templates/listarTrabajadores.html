@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts/layoutPrincipal :: head">
+		<title>Index</title>
+	</head>
+	<link rel="stylesheet" href="../static/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="../static/css/contact-form.css"/>
+
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"/>    
+
+<body>
+
+<header th:replace="layouts/layoutPrincipal :: header">
+</header>
+<div class="container mt-4">
+
+		<br><br>
+		
+			<!-- modal para confirmar eliminación -->
+		 <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Eliminar</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <form action="" method="post">
+		        	<input type="hidden" name="#" id="id">
+		        	<h5>Seguro de eliminar registro?</h5>
+		        	 <div class="modal-footer">
+				        <a class="btn btn-primary" id="btnEliminar">SI</a>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>			        
+				     </div>
+		        </form>
+		      </div>
+		     
+		    </div>
+		  </div>
+		</div>
+
+			<div class="container dentro">
+		<div class="alert alert-warning alert-dismissible fade show" 
+				role="alert" th:if="${MENSAJE!=null}">
+			  <strong><span th:text="${MENSAJE}"></span></strong>
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+		</div>
+		
+			
+			<a th:href="@{/skyscrapers/nuevoTrabajador}" class="btn btn-outline-success fs-5" >Agregar</a> <br><br>
+		
+		
+		
+		
+		
+		<div class="mt-2">
+		 								<table id="trabajador" class="table table-striped table-bordered" style="width:100%">
+												<thead>
+														<tr>
+																	<th scope="col">ID</th>
+																	<th scope="col">DNI</th>
+																	<th scope="col">NOMBRE</th>
+																	<th scope="col">APELLIDO</th>
+																	<th scope="col">CORREO</th>
+																	<th scope="col">ROL</th>
+																	<th scope="col">EDITAR</th>
+																	<th scope="col">ELIMINAR</th>
+														</tr>
+												</thead>
+												<tbody>
+												
+												<tr th:each="bean:${trabajadores}">
+												<td scope="row" th:text="${bean.id}"> </td>
+												<td th:text="${bean.dni}"></td>
+												<td th:text="${bean.nombre}"></td>
+												<td th:text="${bean.apellido}"></td>
+												<td th:text="${bean.username}"></td>
+												<td>
+													<th:block th:each="rol, iter: ${bean.roles}">
+														<label th:text="${rol.name}"></label>
+														<th:block th:if="${!iter.last}"> </th:block>
+													</th:block>
+												</td>			
+												<td><a th:href="@{/skyscrapers/buscarPorIdTrabajador/}+${bean.id}" class="btn btn-success btnEditar">Editar</a></td>
+					    						<td><a th:href="@{eliminarTrabajador/}+${bean.id}" class="btn btn-danger btnEliminar">Eliminar</a></td>
+												</tr>
+												
+												</tbody>
+											</table>	
+
+			</div>	
+		</div>
+	<br><br><br><br>
+
+	  	<section>
+		<nav th:replace="layouts/paginador :: paginador"></nav>
+	</section>
+	
+</div>
+<footer th:replace="layouts/layoutPrincipal :: footer">
+	</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script> 	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script> 
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script type="text/javascript">
+	 $(document).ready(function() {
+		$('#trabajador').DataTable();
+	})
+ </script>	 
+ 	<script type="text/javascript">
+ 	
+ 	$('.alert').fadeIn();     
+	  	setTimeout(function() {
+	       $(".alert").fadeOut();           
+	  },2000);
+	
+	  		 
+	$(".table .btnEliminar").on("click",function(){
+ 		event.preventDefault();
+		var href=$(this).attr("href");
+		$("#btnEliminar").attr('href',href);
+		$("#modalEliminar").modal("show");
+ 	})
+	
+	</script>
+	
+</body>
+
+</html>

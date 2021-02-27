@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="layouts/layoutPrincipal :: head">
+	</head>
+	
+<link rel="stylesheet" href="../static/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="../static/css/contact-form.css"/>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"/>    
+
+<style>
+.has-error .help-block {
+  color: red;
+}  
+</style>
+
+
+	<body>
+	<header th:replace="layouts/layoutPrincipal :: header">
+	</header>
+	<br>
+	<div class="container">
+	
+		<div class="card bg-light">
+		<div class="card-header bg-dark text-white" th:text=${titulo}></div>
+		<div class="card-body">
+		<form th:action="@{/skyscrapers/save}" th:object ="${empresa}" data-toggle="validator"
+													class="popup-form" id="id_registra" method="post">
+													
+													
+													
+														<div class="row">
+														<input type="hidden" th:field="*{idempresa}">
+														
+															<div class="form-group col-sm-6">
+																<div class="subTitulos">RUC(*)</div>
+																	<div class="ubicacion">
+																		<div class="input-group-icon">
+																			<i class="fa fa-id-card"></i>
+																		</div>
+																	</div>	
+																	<input type="text" th:field="*{ruc}" class="form-control" id="ruc" name="ruc" placeholder="Ingresar ruc" required>
+															</div>	
+															<div class="form-group col-sm-6">
+																<div class="subTitulos">RAZON SOCIAL(*)</div>
+																<div class="ubicacion">
+																	<div class="input-group-icon">
+																		<i class="fa fa-user"></i>
+																	</div>
+																</div>	
+																		<input type="text" th:field="*{razon_social}" class="form-control" id=razon_social name="razon_social" placeholder="Ingresar razon social" required>
+															</div>		
+															<div class="form-group col-sm-6">
+																<div class="subTitulos">GIRO DE NEGOCIO(*)</div>
+																<div class="ubicacion">
+																	<div class="input-group-icon">
+																		<i class="fa fa-user"></i>
+																	</div>
+																</div>	
+																		<input type="text" th:field="*{giro_negocio}" class="form-control" id="giro_negocio" name="giro_negocio" placeholder="Ingresar giro de negocio" required>
+															</div>	
+															<div class="form-group col-sm-6">
+																<div class="subTitulos">DIRECCION DE EMPRESA(*)</div>
+																<div class="ubicacion">
+																	<div class="input-group-icon">
+																		<i class="fa fa-email"></i>
+																	</div>
+																</div>	
+																		<input type="text" th:field="*{direccion}" class="form-control" id="direccion" name="direccion" placeholder="Ingresar direccion" required>
+															</div>
+															
+															<div class="form-group col-sm-6">
+																<div class="subTitulos">REFERENCIA(*)</div>
+																<div class="ubicacion">
+																	<div class="input-group-icon">
+																		<i class="fa fa-email"></i>
+																	</div>
+																</div>	
+																		<input type="text" th:field="*{referencia}" class="form-control" id="referencia" name="referencia" placeholder="Ingresar referencia" required>
+															</div>
+															
+															<div class="form-group col-sm-6">
+																<div class="subTitulos">CORREO ELECTRONICO(*)</div>
+																<div class="ubicacion">
+																	<div class="input-group-icon">
+																		<i class="fa fa-email"></i>
+																	</div>
+																</div>	
+																		<input type="text" th:field="*{correo}" class="form-control" id="correo" name="correo" placeholder="Ingresar correo electronico" required>
+															</div>
+															
+																<div class="form-group col-sm-6">
+																<div class="subTitulos">TELEFONO MOVIL(*)</div>
+																<div class="ubicacion">
+																	<div class="input-group-icon">
+																		<i class="fa fa-email"></i>
+																	</div>
+																</div>	
+																		<input type="text" th:field="*{telefono}" class="form-control" id="telefono" name="telefono" placeholder="Ingresar telefono" required>
+															</div>
+															
+																	<div class="form-group col-sm-6">
+																<div class="subTitulos">CANTIDAD DE FIRMAS(*)</div>
+																<div class="ubicacion">
+																	<div class="input-group-icon">
+																		<i class="fa fa-email"></i>
+																	</div>
+																</div>	
+																		<input type="text" th:field="*{saldofirmas}" class="form-control" id="saldofirmas" name="saldofirmas" placeholder="Ingresar saldo de Firmas" required>
+															</div>
+															<div class="my-3"></div>
+															<div class="form-group last col-sm-12">
+																	<div class="ubicacionPie">
+																		<button  type="submit" class="btn btn-success" th:text="Guardar"><i class='fa fa-save'></i> REGISTRAR</button>
+																	 </div>
+																</div><!-- end form-group -->	
+		
+															</div><!-- end row -->
+														</form><!-- end form -->
+	</div>
+	</div>
+	</div>
+	<br>
+	<footer th:replace="layouts/layoutPrincipal :: footer">
+	</footer>
+	
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+ 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script> 	
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script> 
+	
+	
+	<script type="text/javascript">
+	 $(document).ready(function() {
+		$('#empresa').DataTable();
+	})
+ </script>	
+	
+		<script type="text/javascript">
+ 	
+ 	$('.alert').fadeIn();     
+	  	setTimeout(function() {
+	       $(".alert").fadeOut();           
+	  },2000);
+	
+	  		 
+	$(".table .btnEliminar").on("click",function(){
+ 		event.preventDefault();
+		var href=$(this).attr("href");
+		$("#btnEliminar").attr('href',href);
+		$("#modalEliminar").modal("show");
+ 	})
+	
+	
+	</script>
+	
+	<script type="text/javascript">    
+    $(document).ready(function(){     
+        $('#id_registra').bootstrapValidator({      
+        	 fields:{
+        		 ruc:{
+        			selector:'#ruc',      
+       			 	validators:{
+       			 		notEmpty:{
+       			 			message:'Campo ruc es obligatorio'	
+       			 		},
+       			 		digits:{
+       			 			message:'Campo ruc es solo d&iacutegitos'
+       			 		},
+       			 		regexp:{
+      			 			regexp:/^(\d){11}$/,
+      			 			message:'Campo cantidad son 11 d&iacutegitos'
+      			 		},
+       			 	}
+       		 	 },  
+       		 	razon_social:{
+       		 		selector:'#razon_social',    
+     			 	validators:{
+     			 		notEmpty:{
+     			 			message:'Campo razon social es obligatorio'	
+     			 		},
+     			 		regexp:{
+     			 			regexp:/^[a-zA-Z\s\ס\ׁ\ב\י]{3,30}$/,
+     			 			message:'Campo razon social solo letras min 3 hasta max 30 letras'
+     			 		},
+     			 	}
+     		 },   
+     		giro_negocio:{
+     			selector:'#giro_negocio', 
+  			 	validators:{
+  			 		notEmpty:{
+  			 			message:'Campo giro de negocio es obligatorio'	
+  			 		},
+  			 		regexp:{
+  			 			regexp:/^[a-zA-Z\s\ס\ׁ\ב\י]{3,30}$/,
+  			 			message:'Campo giro de negocio solo letras min 3 hasta max 30 letras'
+  			 		},
+  			 	}
+  		 },   
+  		 
+  		direccion:{
+  			selector:'#direccion', 
+			 	validators:{
+			 		notEmpty:{
+			 			message:'direccion es obligatorio'	
+			 		},
+			 		regexp:{
+			 			regexp:/[a-zA-Z1-9ְ-ײ״-צר-ÿ]+\.?(( |\-)[a-zA-Z1-9ְ-ײ״-צר-ÿ]+\.?)* (((#|[nN][oO]\.?) ?)?\d{1,4}(( ?[a-zA-Z0-9\-]+)+)?)$/,
+			 			message:'Campo direccion solo letras y numeros'
+			 		},
+			 	}
+		 },   
+		 
+			referencia:{
+	  			selector:'#referencia', 
+				 	validators:{
+				 		notEmpty:{
+				 			message:'referencia es obligatorio'	
+				 		},
+				 		regexp:{
+				 			regexp:/^[a-zA-Z\s\ס\ׁ\ב\י]{3,30}$/,
+     			 			message:'Campo referencia solo letras min 3 hasta max 30 letras'
+				 		},
+				 	}
+			 },   
+			 
+  		correo:{
+  			selector:'#correo',
+			 	validators:{
+			 		notEmpty:{
+			 			message:'Campo correo es obligatorio'	
+			 		},
+			 		emailAddress:{
+			 			message:'Campo correo debe ser como el siguiente formato "example@gmail.com" '
+			 		},
+			 	}
+		 },   
+     		  		 
+		 telefono:{
+				selector:'#telefono',
+  			 	validators:{
+  			 		notEmpty:{
+  			 			message:'Campo telefono es obligatorio'	
+  			 		},
+  			 		digits:{
+  			 			message:'Campo telefono es solo digitos'
+  			 		},
+  			 		regexp:{
+ 			 			regexp:/^(\d){9}$/,
+ 			 			message:'Campo celular son 9 d&iacutegitos'
+ 			 		},
+  			 	}
+  		 	 },  
+  		 	  
+  		 	saldofirmas:{
+     			selector:'#saldofirmas',      
+    			 	validators:{
+    			 		notEmpty:{
+    			 			message:'Campo saldo de Firmas es obligatorio'	
+    			 		},
+    			 		digits:{
+    			 			message:'Campo saldo de Firmas es solo d&iacutegitos'
+    			 		},
+    			 		regexp:{
+   			 			regexp:/^(\d){4,5}$/,
+   			 			message:'Campo cantidad son 4 o 5 d&iacutegitos'
+   			 		},
+    			 	}
+    		 	 },  
+  		 	 
+                 
+        	 }
+        });   
+			
+    });    
+</script>   
+	
+	
+	
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="layouts/layoutPrincipal :: head">
+		<title>Reporte Estadístico de Documentos</title>
+	</head>
+<body>
+	<header th:replace="layouts/layoutPrincipal :: header">
+	</header>
+	<nav class="navbar navbar-light">
+	   <form class="d-flex">
+	     <label class="col-form-label me-4">Fecha</label>	
+	     <input class="form-control me-2" type="search" placeholder="dd/mm/yy" aria-label="Search">
+	     <input class="form-control me-2" type="search" placeholder="dd/mm/yy" aria-label="Search">
+	     <button class="btn btn-outline-primary" type="submit" width="100">Filtrar</button>
+	   </form>
+	</nav>
+	<div class="ms-5 ps-4">
+		<a th:href="@{/skyscrapers/documentos/export/excel}">Export to Excel</a>
+	</div>
+	<section>
+		<table class="table table-hover">
+		  <thead>
+		    <tr>
+		      <th scope="col"># ID</th>
+		      <th scope="col">dni</th>
+		      <th scope="col">nombre</th>
+		      <th scope="col">apellido</th>
+		      <th scope="col">empresa</th>
+		      <th scope="col">Role</th>
+		    </tr>
+		  </thead>
+		  <tbody>	
+		  	<tr th:each=" u : ${listUsers}">
+		  		<td th:text="${u.id}">
+		  		<td th:text="${u.dni}">
+		  		<td th:text="${u.nombre}">
+		  		<td th:text="${u.apellido}">
+		  		<td th:text="${u.empresa.razon_social}">
+		  	</tr>		 	
+		  </tbody>
+		</table>
+	</section>
+	<section>
+		<nav th:replace="layouts/paginador :: paginador"></nav>
+	</section>
+	<footer th:replace="layouts/layoutPrincipal :: footer">
+	</footer>
+</body>
+</html>
