@@ -29,7 +29,7 @@
 	      <th scope="col"># ID</th>
 	      <th scope="col">Fecha</th>
 	      <th scope="col">Documento</th>
-	      <th scope="col">Gestor</th>
+	      <th scope="col" class="text-center">Encargados</th>
 	      <th scope="col">Estado</th>
 	      <th scope="col">Firmar</th>
 	      <th scope="col">Enviar</th>
@@ -40,7 +40,7 @@
 	    	<td scope="row" th:text="${data.iddocumento}"></td>
 	    	<td th:text="${data.fecha_registro}"></td>
 	    	<td><a th:href="@{'listarDocumentos/download?iddocumento=' + ${data.iddocumento}}">[[${data.nombre_original}]]</a></td>
-	    	<td>Prueba</td>
+	    	<td class="text-center" th:text="${data.users}"></td>
 	    	<td th:text="${data.estado}"></td>
 	    	<td>
 	      	<a th:href="@{'buscarPor?iddocumento=' + ${data.iddocumento}}" class="boton boton-firmar">
